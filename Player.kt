@@ -16,7 +16,7 @@ class Player(_name: String,
     val hometown by lazy { selectHometown() }
     private  fun selectHometown() = File("data/towns.txt")
         .readText()
-        .split("\n")
+        .split("\r")
         .shuffled()
         .first()
 
@@ -54,4 +54,6 @@ class Player(_name: String,
 
     fun castFireball(numFireballs:Int = 2) =
         println("A glass of Fireball springs into existence. (x$numFireballs)")
+
+
 }

@@ -6,6 +6,10 @@ fun main(args: Array<String>) {
 
     player.castFireball()
 
+    var currentRoom:Room = TownSquare()
+    println(currentRoom.description())
+    println(currentRoom.load())
+
     //A
     val auraColor = player.auraColor(player.isBlessed)
 
