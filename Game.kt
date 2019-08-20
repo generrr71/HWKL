@@ -1,5 +1,8 @@
 package com.bignerdranch.nyethack
 
+import com.sun.org.apache.xpath.internal.operations.Bool
+import kotlin.system.exitProcess
+
 fun main(args: Array<String>) {
     //A
     //   val auraColor = player.auraColor(player.isBlessed)
@@ -8,6 +11,8 @@ fun main(args: Array<String>) {
 }
 
 object Game {
+
+
 
     val player = Player("Madrigal")
     var currentRoom: Room = TownSquare()
@@ -22,15 +27,16 @@ object Game {
         player.castFireball()
     }
 
-    fun play() {
+     fun play() {
+
         while (true) {
             println(currentRoom.description())
             println(currentRoom.load())
             printPlayerStatus(player)
 
             print(">Enter your command: ")
-            println(GameInput(readLine()).processCommand())
-            //plaing
+          println(GameInput(readLine()).processCommand())
+            //playing
         }
     }
 
@@ -55,7 +61,7 @@ object Game {
         private fun commandNotFound() = "I'm not quite sure what you're trying to do!"
     }
 
-    private fun move(directionInput: String) = {
+    private fun move(directionInput: String) =
         try {
             val direction = Direction.valueOf(directionInput.toUpperCase())
             val newPosition = direction.updateCoordinate(player.currentPosition)
@@ -69,5 +75,4 @@ object Game {
         } catch (e: Exception) {
             "Invalid direction : $directionInput."
         }
-    }
 }
