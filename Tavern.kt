@@ -62,19 +62,31 @@ private fun performPurchase(price:Double, patronName:String){
 }
 
 
-
-private fun toDragonSpeak(phrase:String)=
-    phrase.replace(Regex("[aeiou]")) {
-        when (it.value) {
-            "a" -> "4"
-            "e" -> "3"
-            "i" -> "1"
-            "o" -> "0"
-            "u" -> "|_|"
-            else -> it.value
-        }
+//private fun <T> Iterable<T>.random():T=this.shuffled().first()
+//private fun toDragonSpeak(phrase:String)=
+////    phrase.replace(Regex("[aeiou]")) {
+////        when (it.value) {
+////            "a" -> "4"
+////            "e" -> "3"
+////            "i" -> "1"
+////            "o" -> "0"
+////            "u" -> "|_|"
+////            else -> it.value
+////        }
+////    }
+private fun String.toDragonSpeak(): String  {
+     val str1 = this.replace(Regex("[aeiou]")) {
+            when (it.value) {
+                "a" -> "4"
+                "e" -> "3"
+                "i" -> "1"
+                "o" -> "0"
+                "u" -> "|_|"
+                else -> it.value
+            }
+     }
+        return str1
     }
-
 private fun placeOrder(patronName: String, menuData:String) {
     val indexOfApostrophe = TAVERN_NAME.indexOf('\'')
     val tavernMaster = TAVERN_NAME.substring(0 until indexOfApostrophe)
@@ -88,9 +100,20 @@ private fun placeOrder(patronName: String, menuData:String) {
     performPurchase(price.toDouble(), patronName)
 
     val phrase = if (name == "Dragon's Breath"){
-        "$patronName exclaims: ${toDragonSpeak("Ah, delicious $name!")}"
+        "$patronName exclaims: ${("Ah, delicious $name!").toDragonSpeak()}"
     } else {
-        "$patronName says: Thanks for the $name"
+        "$patronName says: Thanks for the $name".frame(5)
     }
     println(phrase)
+}
+
+fun String.frame( padding:Int ):String {
+    val name = this
+    val formatChar:String = "*"
+    val greeting = "$name"
+    val middle = formatChar.padEnd(padding)
+        .plus(greeting)
+        .plus(formatChar.padEnd(padding))
+    val end = (0 until middle.length).joinToString("") {formatChar}
+    return "$end\n$middle\n$end"
 }
