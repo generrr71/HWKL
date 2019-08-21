@@ -6,11 +6,14 @@ open class Room (val name: String){
             "Danger level: $dangerLevel"
 
     open fun load() = "Nothing much to see here..."
+
 }
 
 open class TownSquare :Room("Town Square"){
     override val dangerLevel = super.dangerLevel -3
-    private var bellSound = "GWONG"
-   final override fun load() = "The villagers rally and cheer as you enter!\n${ringBell()}"
-    private fun ringBell()="The bell tower announces your arrival. $bellSound"
+    public var bellSound = "GWONG"
+    final override fun load() = "The villagers rally and cheer as you enter!\n${ringBell()}"
+    fun ringBell()="The bell tower announces your arrival. $bellSound"
+    public val bellring :String = "dwang"
+
 }
