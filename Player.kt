@@ -32,8 +32,8 @@ class Player(_name: String,
     private  fun selectHometown() = File("data/towns.txt")
         .readText()
         .split("\r")
-        .shuffled()
-        .first()
+        .random()
+
 
     init {
         require(healthPoints>0, {"healthPoints must be greater than zero."})
